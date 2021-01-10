@@ -1,10 +1,10 @@
 import { sign } from "jsonwebtoken";
 import { getConnection } from "typeorm";
-import { User } from "./entity/User";
+import { User } from "../entity/User";
 
 export const createAccessToken = (user: User) => {
   return sign({ userId: user.id }, process.env.ACCESS_TOKEN_SECRET!, {
-    expiresIn: "15s",
+    expiresIn: "15m",
   });
 };
 

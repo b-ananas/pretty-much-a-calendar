@@ -9,16 +9,16 @@ import {
   Resolver,
   UseMiddleware,
 } from "type-graphql";
-import { User } from "./entity/User";
+import { User } from "../entity/User";
 import { hash, compare } from "bcryptjs";
-import { MyContext } from "./MyContext";
+import { MyContext } from "../MyContext";
 import {
   createAccessToken,
   createRefreshToken,
   revokeRefreshTokenForUser,
-} from "./auth";
-import { isAuth } from "./isAuth";
-import { sendRefreshToken } from "./sendRefreshToken";
+} from "../auth/auth";
+import { isAuth } from "../auth/isAuth";
+import { sendRefreshToken } from "../auth/sendRefreshToken";
 import { verify } from "jsonwebtoken";
 
 @ObjectType()
