@@ -4,6 +4,7 @@ import express from "express";
 import { ApolloServer } from "apollo-server-express";
 import { buildSchema } from "type-graphql";
 import { UserResolver } from "./resolvers/UserResolver";
+import { DogResolver } from "./resolvers/DogResolver";
 import { createConnection } from "typeorm";
 import cookieParser from "cookie-parser";
 import cors from "cors";
@@ -24,7 +25,7 @@ import { refreshTokenHandler } from "./routes/refreshTokenHandler";
 
   const apolloServer = new ApolloServer({
     schema: await buildSchema({
-      resolvers: [UserResolver],
+      resolvers: [UserResolver, DogResolver],
     }),
     context: ({ req, res }) => ({ req, res }),
   });
