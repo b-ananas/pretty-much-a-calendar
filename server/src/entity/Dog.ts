@@ -1,5 +1,6 @@
 import { Field, Int, ObjectType } from "type-graphql";
-import { Entity, PrimaryGeneratedColumn, Column, BaseEntity } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, OneToMany } from "typeorm";
+import { Photo } from "./Photo";
 
 @ObjectType()
 @Entity("dogs")
@@ -19,4 +20,9 @@ export class Dog extends BaseEntity {
   @Field()
   @Column() 
   race: string;
+
+
+  @Field(()=>[Photo])
+  @OneToMany(() => Photo, photo => photo.dog, {cascade: true})
+  photos: Photo[];
 }
