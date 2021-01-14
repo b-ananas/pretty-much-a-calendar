@@ -1,4 +1,4 @@
-import "dotenv/config";
+import "dotenv";
 import "reflect-metadata";
 import express from "express";
 import { ApolloServer } from "apollo-server-express";
@@ -8,7 +8,8 @@ import { DogResolver } from "./resolvers/DogResolver";
 import { createConnection } from "typeorm";
 import cookieParser from "cookie-parser";
 import cors from "cors";
-import { refreshTokenHandler } from "./routes/refreshTokenHandler";
+import { refreshTokenMiddleware } from "./middleware/refreshTokenMiddleware";
+import { PhotoResolver } from "./resolvers/PhotoResolver";
 (async () => {
   const app = express();
   app.use(
@@ -19,13 +20,13 @@ import { refreshTokenHandler } from "./routes/refreshTokenHandler";
   );
   app.use(cookieParser());
   app.get("/", (_req, res) => res.send("hello"));
-  app.get("/refresh_token", refreshTokenHandler);
+  app.get("/refresh_token", refreshTokenMiddleware);
 
   await createConnection();
 
   const apolloServer = new ApolloServer({
     schema: await buildSchema({
-      resolvers: [UserResolver, DogResolver],
+      resolvers: [UserResolver, DogResolver, PhotoResolver],
     }),
     context: ({ req, res }) => ({ req, res }),
   });
