@@ -16,9 +16,9 @@ import {
   createAccessToken,
   createRefreshToken,
   revokeRefreshTokenForUser,
-} from "../auth/auth";
-import { isAuth } from "../auth/isAuth";
-import { sendRefreshToken } from "../auth/sendRefreshToken";
+} from "../utils/auth";
+import { isAuth } from "../middleware/isAuth";
+import { sendRefreshToken } from "../utils/sendRefreshToken";
 import { verify } from "jsonwebtoken";
 
 @ObjectType()

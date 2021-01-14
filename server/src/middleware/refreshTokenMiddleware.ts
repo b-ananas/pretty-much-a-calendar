@@ -1,11 +1,11 @@
 
 import { verify } from "jsonwebtoken";
 import { User } from "../entity/User";
-import { createAccessToken, createRefreshToken } from "../auth/auth";
-import { sendRefreshToken } from "../auth/sendRefreshToken";
+import { createAccessToken, createRefreshToken } from "../utils/auth";
 import { Request, Response} from "express"; 
+import { sendRefreshToken } from "../utils/sendRefreshToken";
 
-export const refreshTokenHandler = async (req: Request, res: Response) => {
+export const refreshTokenMiddleware = async (req: Request, res: Response) => {
     const token = req.cookies.jabba;
     if (!token) {
       return res.send({ ok: false, accessToken: ""});
