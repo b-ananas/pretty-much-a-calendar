@@ -1,5 +1,5 @@
 import { Field, Int, ObjectType } from "type-graphql";
-import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, ManyToOne } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, ManyToOne,/* CreateDateColumn*/ } from "typeorm";
 import { Dog } from "./Dog";
 
 @ObjectType()
@@ -12,6 +12,10 @@ export class Photo extends BaseEntity {
   @Field()
   @Column()
   desc: string;
+
+  // @Column()
+  // filename: string;
+
 
 
   @ManyToOne(() => Dog, dog => dog.photos, {eager: true})
