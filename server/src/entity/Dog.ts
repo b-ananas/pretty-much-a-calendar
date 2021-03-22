@@ -22,7 +22,9 @@ export class Dog extends BaseEntity {
   race: string;
 
 
-  @Field(()=>[Photo])
+  @Field(()=>[String])
+  photos_data: string[]
+
   @OneToMany(() => Photo, photo => photo.dog, {cascade: true})
   photos: Photo[];
 }

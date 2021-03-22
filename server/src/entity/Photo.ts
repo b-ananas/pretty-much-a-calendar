@@ -9,12 +9,14 @@ export class Photo extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Field()
   @Column()
-  desc: string;
+  filename: string;
 
   // @Column()
   // filename: string;
+
+  @Field(()=>String)
+  contents: string;
 
 
 

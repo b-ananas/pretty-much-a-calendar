@@ -9,7 +9,7 @@ import { createConnection } from "typeorm";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import { refreshTokenMiddleware } from "./middleware/refreshTokenMiddleware";
-import { PhotoResolver } from "./resolvers/PhotoResolver";
+// import { PhotoResolver } from "./resolvers/PhotoResolver";
 (async () => {
   const app = express();
   app.use(
@@ -26,11 +26,11 @@ import { PhotoResolver } from "./resolvers/PhotoResolver";
 
   const apolloServer = new ApolloServer({
     schema: await buildSchema({
-      resolvers: [UserResolver, DogResolver, PhotoResolver],
+      resolvers: [UserResolver, DogResolver],
     }),
     context: ({ req, res }) => ({ req, res }),
   });
-  apolloServer.applyMiddleware({ app, cors: false });
+  apolloServer.applyMiddleware({ app, cors: true });
   app.listen(4000, () => {
     console.log("Express server started \n Listening on port 4000");
   });
